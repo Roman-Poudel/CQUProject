@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=yes">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Add Users to Conference</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<!--title-->
+<h3 style="color: gray">Conference Managment System</h3>
+
+<!--navigation bar-->
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+
+<!--about us-->
+<div>
+    <center>
+        <table style="width: 1000px" class="table-responsive">
+            <thead>
+            <tr>
+                <h1> CONTACT US </h1>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td><label>400 Kent St, Sydney</label></td>
+                <td><label>13 27 86</label></td>
+            </tr>
+            <tr>
+                <td><label>NSW 2000, Australia</label></td>
+                <td><label>Cqu@mail.com</label></td>
+            </tr>
+            </tbody>
+        </table>
+    </center>
+    <!--requesting details-->
+    <div>
+        <center>
+            <div>
+                <table class="table-responsive">
+                    <tr>
+                        <td class="form-appl"><label> Your Email</label></td>
+                        <td class="form-appl form-box">
+                            <input type="email" name="email" class="form-control"
+                                   placeholder="name@example.com"></td>
+                    </tr>
+                    <tr>
+                        <td class="form-appl"><label>Issue Description</label></td>
+                        <td class="form-appl">
+                            <textarea class="form-control" aria-label="With textarea" style="height: 200px"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>
+                            <button class="btn btn-primary" name="submit">Submit</button>
+                            <button class="btn btn-danger" name="cancel">Cancel</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </center>
+    </div>
+</div>
+</body>
+</html>

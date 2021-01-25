@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet"  href="/css/bootstrap-overrides.css" >
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <title>List Publisher</title>
+</head>
+<body>
+<div>
+    <form align="center">
+        <button type="submit" formaction="/registerpublisher" >ADD NEW Publisher</button>
+    </form>
+</div>
+
+<table class="table" align="center" cellspacing="10" cellpadding="7">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Name</th>
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr itemscope="itemscope" th:each="publisher :${listPublisher}">
+        <td  th:text="${publisher.publisherID}">ID</td>
+        <td th:text="${publisher.publisherName}">Name</td>
+        <td >
+            <a th:href="@{'/editpublisher/'+${publisher.publisherID}}">UPDATE</a>
+            <a th:href="@{'/deletepublisher/'+${publisher.publisherID}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

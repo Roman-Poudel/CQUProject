@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-overrides.css">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <title>USERS</title>
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<script id="searching">
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("keyword");
+        filter = input.value.toLowerCase();
+        table = document.getElementById("searchTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[1];
+            if (td) {
+                txtValue = td.textContent || td.innerText;
+                if (txtValue.toLowerCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+</script>
+<script id="sorting">
+    function sortTable(n) {
+        var table, rows, switching, i, x, y, shouldSwitch, dir, switchcount = 0;
+        table = document.getElementById("searchTable");
+        switching = true;
+        // Set the sorting direction to ascending:
+        dir = "asc";
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("td")[n];
+                y = rows[i + 1].getElementsByTagName("td")[n];
+                /* Check if the two rows should switch place,
+                based on the direction, asc or desc: */
+                if (dir == "asc") {
+                    if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                } else if (dir == "desc") {
+                    if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                        // If so, mark as a switch and break the loop:
+                        shouldSwitch = true;
+                        break;
+                    }
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+                // Each time a switch is done, increase this count by 1:
+                switchcount++;
+            } else {
+                /* If no switching has been done AND the direction is "asc",
+                set the direction to "desc" and run the while loop again. */
+                if (switchcount == 0 && dir == "asc") {
+                    dir = "desc";
+                    switching = true;
+                }
+            }
+        }
+    }
+</script>
+<br/>
+<div class="container">
+    <div class="row">
+        <div class="left col-md-2">
+            <div class="card card-left">
+                <div class="card-body">
+                    <h4 class="card-title">Manage Data</h4>
+                    <a href="#" class="btn btn-primary card-button">Users</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/register" class="card-link"
+                                                 style="color:#37404e !important;">Create</a></li>
+                        <li class="card-list"><a href="/showusers" class="card-link"
+                                                 style="color:#37404e !important;">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Papers</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                        <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Conferences</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registerconference" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showconference" class="card-link">List</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary card-button">Group</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registergroup" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showgroups" class="card-link">List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right col-md-10">
+            <form th:action="@{/searchpaper}">
+                Filter: <input type="text" onkeyup="myFunction()" name="keyword" id="keyword" size="50"
+                               th:value="${keyword}"
+                               required/>
+                &nbsp;
+                <input type="submit" value="Search"/>
+                &nbsp;
+                <input type="Reset" value="Clear" id="btnClear"/>
+            </form>
+            <table class="table" id="searchTable">
+                <thead>
+                <tr>
+                    <th scope="col" onclick="sortTable(0)">ID</th>
+                    <th scope="col" onclick="sortTable(1)">Title</th>
+                    <th scope="col" onclick="sortTable(2)">Topic</th>
+                    <th scope="col" onclick="sortTable(3)">Publisher</th>
+                    <th scope="col" onclick="sortTable(4)">Country</th>
+                    <th scope="col" onclick="sortTable(5)">Time Zone</th>
+                    <th scope="col" onclick="sortTable(6)">Status</th>
+                    <th scope="col" onclick="sortTable(7)">USER</th>
+                    <th scope="col">Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr itemscope="itemscope" th:each="paper :${listPapers}">
+                    <td th:text="${paper.paperID}"> ID</td>
+                    <td th:text="${paper.paperTitle}"> Title</td>
+                    <td th:text="${paper.paperTopic}"> Topic</td>
+                    <td th:text="${paper.paperPublisher}">Publisher</td>
+                    <td th:text="${paper.country}">Country</td>
+                    <td th:text="${{paper.timzone}}">Timezone</td>
+                    <td th:text="${paper.paperStatus}"> Status</td>
+                    <td th:text="${{paper.user}}">SER </td>
+                    <td> Action</td>
+
+                    <td>
+                        <a th:href="@{'/editpaper/'+${paper.paperID}}">UPDATE</a>
+                        <a th:href="@{'/deletepaper/'+${paper.paperID}}">Delete</a>
+                        <a th:href="@{'/paperdetail/'+${paper.paperID}}">Details</a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>

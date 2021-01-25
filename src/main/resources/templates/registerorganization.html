@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet"  href="/css/bootstrap-overrides.css" >
+    <title>Organization</title>
+
+</head>
+<body>
+<h1>Form</h1>
+<form action="#" th:action="@{/registerorganization}" th:object="${organization}" method="post">
+    <input type="text"  th:field="*{orgName}"/>
+    <p><input type="submit" value="Submit" /> <input type="reset" value="Reset" /></p>
+</form>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+<!-- Bootstrap CSS -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+<!-- Override Boostrap CSS -->
+<link rel="stylesheet" href="/css/bootstrap-overrides.css">
+<link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+<script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+<head>
+    <meta charset="UTF-8">
+    <title>USERS</title>
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="left col-md-2 col-xs-2">
+            <div class="card card-left">
+                <div class="card-body">
+                    <h4 class="card-title">Manage Data</h4>
+                    <a href="#" class="btn btn-primary card-button">Users</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/register" class="card-link"
+                                                 style="color:#37404e !important;">Create</a></li>
+                        <li class="card-list"><a href="/showusers" class="card-link"
+                                                 style="color:#37404e !important;">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Papers</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                        <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Conferences</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registerconference" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showconference" class="card-link">List</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary card-button">Group</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registergroup" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showgroup" class="card-link">List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right col-md-10 col-xs-10">
+            <form th:action="@{/searchuser}">
+                Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required/>&nbsp;
+                <input type="submit" value="Search"/>&nbsp;
+                <input type="Reset" value="Clear" id="btnClear"/>
+                <table class="table" align="center" cellspacing="10" cellpadding="7">
+                    <thead>
+                    <div>
+                    </div>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr itemscope="itemscope" th:each="user :${searchuser}">
+                        <td th:text="${user.uID}">ID</td>
+                        <td th:text="${user.uName}">NAME</td>
+                        <td th:text="${user.email}"> EMAIL</td>
+                        <td>
+                            <a th:href="@{'/edituser/'+${user.uID}}">UPDATE</a>
+                            <a th:href="@{'/deleteuser/'+${user.uID}}">Delete</a>
+                            <a th:href="@{'/userdetail/'+${user.uID}}">User Details</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

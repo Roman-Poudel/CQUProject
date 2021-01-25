@@ -1,0 +1,52 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet"  href="/css/bootstrap-overrides.css" >
+    <title>EDIT</title>
+
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<h1>Form</h1>
+<form action="#" th:action="@{/paperdetail/{paperID}}" th:object="${paper}" method="post">
+
+    <table class="table" align="center" cellspacing="10" cellpadding="7">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">TOPIC</th>
+            <th scope="col">Title</th>
+            <th scope="col">Publisher</th>
+            <th scope="col">Paper Status</th>
+            <th scope="col">Action</th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td  th:text="${paper.paperID}">ID</td>
+            <td th:text="${paper.paperTitle}">Title</td>
+            <td th:text="${paper.paperTopic}"> Topic </td>
+            <td th:text="${paper.paperPublisher}"> Publisher</td>
+            <td th:text="${paper.paperStatus}"> Status</td>
+            <td >
+                <a th:href="@{'/editpaper/'+${paper.paperID}}">UPDATE</a>
+                <a th:href="@{'/deletepaper/'+${paper.paperID}}">Delete</a>
+                <a th:href="@{'/paperdetail/'+${paper.paperID}}">Details</a>
+            </td>
+        </tr>
+        </tbody>
+        <!--        <link th:href="/register"><button >ADD NEW</button></link>-->
+    </table>
+
+</form>
+</body>

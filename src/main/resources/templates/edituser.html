@@ -1,0 +1,87 @@
+<!DOCTYPE HTML>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-overrides.css">
+    <meta charset="UTF-8">
+    <title>EDIT USER</title>
+
+</head>
+<body>
+<div>
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="left col-md-2 col-xs-12" style="position:relative">
+            <div class="card card-left">
+                <div class="card-body">
+                    <h4 class="card-title">Manage Data</h4>
+                    <a href="#" class="btn btn-primary card-button">Users</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/register" class="card-link"
+                                                 style="color:#37404e !important;">Create</a></li>
+                        <li class="card-list"><a href="/showusers" class="card-link"
+                                                 style="color:#37404e !important;">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Papers</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                        <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Conferences</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="select_create_conference.html" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showpapersbygroup" class="card-link">List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-8 col-xs-12 col-md-offset-2">
+            <form  th:action="@{/edituser}" th:object="${user}" method="post">
+                <div>
+                    <label>ID</label>
+                    <input type="text" th:field="*{uID}" name="id" readonly="readonly" class="form-control"/>
+                </div>
+
+                <div>
+                    <label> User Name</label>
+                    <input type="text" th:field="*{uName}" name="uname" class="form-control"/>
+                </div>
+                <div>
+                    <label>EMAIL</label>
+                    <input type="email" name="email" th:field="*{email}" class="form-control" readonly="readonly"/>
+                </div>
+                <div>
+                    <label>Password</label>
+                    <input type="password" th:field="*{password}" class="form-control" required/>
+                </div>
+                <div>
+                    <label>Organization</label>
+                    <input type="text" th:field="*{organization}" class="form-control" required/>
+                    <!--<select th:field="*{organization}">
+    <option value=""> Select Your Organization or create</option>
+    <option itemscope="itemscope" th:each="organization : ${listOrganization}"
+            th:value="${organization.orgName}"
+            th:text="${organization.orgName}"></option>
+</select>-->
+                </div>
+                <div>
+                        <button type="Submit" class="btn btn-primary">Save</button>
+                        <button type="Reset" class="btn btn-danger" value="clear">Clear</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>

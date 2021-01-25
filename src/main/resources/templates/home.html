@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../favicon.ico">
+    <title>Conference Management System</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="/css/stylesheet.css" rel="stylesheet" type="text/css">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<!--Title of the page-->
+<h3 style="color: gray">Conference Managment System</h3>
+<!--Navigation bar-->
+<div>
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+
+<br/><br/>
+<div>
+    <div style="padding: 50px; padding-top: 0px">
+        <h3>Who are we</h3>
+        <p>Due to the global pandemic, all the
+            recent conferences have to be conducted online. To schedule the online presentation sessions, the organiser
+            needs to consider the time zone, the
+            topic and the country differences. Ideally, the participants from the same (or closer) time zones and the
+            same (or the similar) topics should be
+            grouped into the same sessions. Currently, all the registered papers are kept in the MS Excel file, as
+            illustrated in the Figure 1 below. The
+            presentation scheduling is also manually handled which is very time consuming.</p>
+        <div>
+            <div class="container" itemscope="itemscope" th:each="conference :${upcomingConference}">
+                <div class="row">
+                    <div class="col-6">
+                        <div class="card mt-3 tab-card">
+                            <div class="card-header tab-card-header">
+                                <div>
+                                    <label th:text="${conference.conferenceName}"></label>
+                                    <label th:text="${conference.conferenceTheme}"></label>
+                                </div>
+                            </div>
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active p-3" id="one" role="tabpanel"
+                                     aria-labelledby="one-tab">
+                                    <p class="card-text">Some quick example text to build on the card title and make up
+                                        the bulk of the card's
+                                        content.</p>
+                                    <a href="/showconference" class="btn btn-primary">View Details</a>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

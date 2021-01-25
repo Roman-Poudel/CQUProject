@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!--   // <link href="Style.css" rel="stylesheet">-->
+    <title>Registration Paper</title>
+
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<form action="#" th:action="@{/registerpaper}" th:object="${paper}" method="post">
+    <div class="container">
+        <div class="row">
+            <div class="left col-md-2 col-xs-2">
+                <div class="card card-left">
+                    <div class="card-body">
+                        <h4 class="card-title">Manage Data</h4>
+                        <a href="#" class="btn btn-primary card-button">Users</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="/register" class="card-link"
+                                                     style="color:#37404e !important;">Create</a></li>
+                            <li class="card-list"><a href="/showusers" class="card-link"
+                                                     style="color:#37404e !important;">List</a></li>
+                        </ul>
+
+                        <a href="#" class="btn btn-primary card-button">Papers</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                            <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                        </ul>
+
+                        <a href="#" class="btn btn-primary card-button">Conferences</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="registerconference" class="card-link">Create</a>
+                            </li>
+                            <li class="card-list"><a href="showconference" class="card-link">List</a></li>
+                        </ul>
+                        <a href="#" class="btn btn-primary card-button">Group</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="registergroup" class="card-link">Create</a>
+                            </li>
+                            <li class="card-list"><a href="showpapersbygroup" class="card-link">List</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="right col-md-10 col-xs-10">
+                <div>
+
+                    <!--<select th:field="*{organization}">
+                        <option value=""> Select Your Organization or create</option>
+                        <option itemscope="itemscope" th:each="organization : ${listOrganization}"
+                                th:value="${organization.orgName}"
+                                th:text="${organization.orgName}"></option>
+                    </select>-->
+                    <label> Paper Topic </label>
+                    <div>
+                        <select th:field="*{paperTopic}" class="form-control" required>
+                            <option value=""> Topic</option>
+                            <option itemscope="itemscope" th:each="topic : ${listTopic}"
+                                    th:value="${topic.topicName}"
+                                    th:text="${topic.topicName}"></option>
+                        </select>
+                    </div>
+                    <div>
+                        <label>Title</label>
+                        <input type="text" name="title" th:field="*{paperTitle}" class="form-control"/>
+                    </div>
+                    <div>
+                        <label>Publihser</label>
+                        <div>
+                            <select th:field="*{paperPublisher}" required class="form-control">
+                                <option value="*{paperPublisher}"> Publisher</option>
+                                <option itemscope="itemscope" th:each="publisher : ${listPublisher}"
+                                        th:value="${publisher.publisherName}"
+                                        th:text="${publisher.publisherName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label>Country</label>
+                        <div>
+                            <select th:field="*{country}" required class="form-control">
+                                <option value=""> Country</option>
+                                <option itemscope="itemscope" th:each="country : ${countries}"
+                                        th:value="${country}"
+                                        th:text="${country}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label>Publihser</label>
+                        <input type="file" name="file" class="form-control-file">
+                    </div>
+                    <div>
+                        <div>
+                            <input type="submit" class="btn btn-primary" value="Submit"/>
+                            <button type="reset" class="btn btn-danger" value="reset">Clear</button>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+</body>
+</html>

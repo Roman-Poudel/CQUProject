@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet"  href="/css/bootstrap-overrides.css" >
+    <title>Title</title>
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<p>Sorry ! No data found </p>
+<form>
+    <button type="submit" formaction="/">GOTO HOME</button>
+</form>
+
+</body>
+</html>

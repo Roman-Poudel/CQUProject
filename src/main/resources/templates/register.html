@@ -1,0 +1,101 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-overrides.css">
+    <title>Getting Started: Handling Form Submission</title>
+
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="left col-md-2 col-xs-2">
+            <div class="card card-left">
+                <div class="card-body">
+                    <h4 class="card-title">Manage Data</h4>
+                    <a href="#" class="btn btn-primary card-button">Users</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/register" class="card-link"
+                                                 style="color:#37404e !important;">Create</a></li>
+                        <li class="card-list"><a href="/showusers" class="card-link"
+                                                 style="color:#37404e !important;">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Papers</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                        <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                    </ul>
+
+                    <a href="#" class="btn btn-primary card-button">Conferences</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registerconference" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showconference" class="card-link">List</a></li>
+                    </ul>
+                    <a href="#" class="btn btn-primary card-button">Group</a>
+                    <ul class="list-nobullets">
+                        <li class="card-list"><a href="registergroup" class="card-link">Create</a>
+                        </li>
+                        <li class="card-list"><a href="showgroups" class="card-link">List</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="right col-md-10 col-xs-2">
+            <form action="#" th:action="@{/register}" th:object="${user}" method="post" class="form-group">
+                <center>
+                    <div class="container">
+                        <table>
+                            <thead>
+                            <th style="text-align: center" class="-align-center">REGISTER</th>
+                            </thead>
+                            <tbody>
+                            <tr>
+                                <td style="text-align-last: left"><label>User Name</label></td>
+                                <td style="text-align-last: left; width: 400px"><input type="text" th:field="*{uName}"
+                                                                                       name="username" placeholder="USER NAME"
+                                                                                       required class="form-control"></td>
+                            </tr>
+                            <tr>
+                                <td style="text-align-last: left"><label>Email</label></td>
+                                <td style="text-align-last: left; width: 400px"><input type="email" th:field="*{email}"
+                                                                                       placeholder="Your Email"
+                                                                                       required class="form-control"></td>
+                            </tr>
+
+                            <tr>
+                                <td style="text-align-last: left"><label>Password</label></td>
+                                <td style="text-align-last: left"><input class="form-control" type="password" th:field="*{password}"
+                                                                         name="pass" placeholder="********" required></td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td>
+                                    <input type="submit" value="Submit" class="btn btn-block btn-success"/>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+
+                        <a href="/login"> You have an account already? <strong>Login Here</strong></a>
+                    </div>
+                </center>
+            </form>
+
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

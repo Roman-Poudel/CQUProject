@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet"  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" >
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet"  href="/css/bootstrap-overrides.css" >
+    <title>UserProfile</title>
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+<h1>Form</h1>
+<form action="#" th:action="@{/userdetail/{uID}}" th:object="${user}" method="post">
+
+    <table class="table" align="center" cellspacing="10" cellpadding="7">
+        <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Email</th>
+            <th scope="col">Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td th:text="${user.uID}">ID</td>
+            <td th:text="${user.uName}">NAME</td>
+            <td th:text="${user.email}"> EMAIL </td>
+            <td >
+                <a th:href="@{'/edituser/'+${user.uID}}">UPDATE</a>
+                <a th:href="@{'/deleteuser/'+${user.uID}}">Delete</a>
+                <a th:href="@{'/userdetail/'+${user.uID}}">User Details</a>
+            </td>
+        </tr>
+        </tbody>
+        <!--        <link th:href="/register"><button >ADD NEW</button></link>-->
+    </table>
+
+<!--    <input type="text"  th:field="*{uID}" readonly/>-->
+<!--    <input type="text"  th:field="*{uName}"/>-->
+<!--    <input type="email" th:field="*{email}"/>-->
+</form>
+</body>
+</html>

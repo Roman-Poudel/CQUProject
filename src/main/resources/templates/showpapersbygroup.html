@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-overrides.css">
+    <link rel="stylesheet" type="text/css" href="/webjars/bootstrap/css/bootstrap.min.css"/>
+    <script type="text/javascript" src="/webjars/jquery/jquery.min.js"></script>
+    <title>USERS</title>
+</head>
+<body>
+<div>
+    <div class="navbar-nav">
+        <header>
+            <div th:insert="/navbar :: navbar"></div>
+        </header>
+    </div>
+    <form align="center">
+        <button type="submit" formaction="/registerpaper">ADD NEW Paper</button>
+    </form>
+    <form th:action="@{/searchpaper}">
+        Filter: <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" required/>
+        &nbsp;
+        <input type="submit" value="Search"/>
+        &nbsp;
+        <input type="Reset" value="Clear" id="btnClear"/>
+    </form>
+</div>
+
+
+<table class="table" align="center" cellspacing="10" cellpadding="7">
+    <thead>
+    <tr>
+        <th scope="col">ID</th>
+        <th scope="col">TITLE</th>
+        <th scope="col">TOPIC</th>
+        <th scope="col">PUBLISHER</th>
+        <th scope="col">AUTHOR</th>
+        <th scope="col">Group</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr itemscope="itemscope" th:each="paper:${resultForGroup}">
+        <td><td th:text="${paper}"> ID</td>
+    <tr itemscope="itemscope" th:each="groupPaper:${gp}">
+        <td th:text="${groupPaper.paperID}"> ID</td>
+        <!--<td th:text="${groupPaper}"> Title</td>
+        <td th:text="${groupPaper}"> Topic</td>
+        <td th:text="${groupPaper}"> Publisher</td>
+        <td th:text="${groupPaper}"> Publisher</td>-->
+        </td>
+        <td>
+            <button class="button btn-group">Join Your Group</button>
+        </td>
+
+    </tr>
+    <!--        <td th:text="${paper.paperID}"> ID</td>-->
+    <!--        <td th:text="${paper.paperTitle}"> Title </td>-->
+    <!--        <td th:text="${paper.paperTopic}"> Topic </td>-->
+    <!--        <td th:text="${paper.paperPublisher}"> Publisher</td>-->
+    <!--        <td th:text="${paper.user}"> Author</td>-->
+
+
+    <!--<td >
+        <a th:href="@{'/editpaper/'+${paper.paperID}}">UPDATE</a>
+        <a th:href="@{'/deletepaper/'+${paper.paperID}}">Delete</a>
+        <a th:href="@{'/paperdetail/'+${paper.paperID}}">Details</a>
+    </td>-->
+
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

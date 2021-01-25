@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" charset="UTF-8">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+    <!-- Override Boostrap CSS -->
+    <link rel="stylesheet" href="/css/bootstrap-overrides.css">
+    <title>Getting Started: Handling Form Submission</title>
+    <!--    <link rel="stylesheet" href="easySelectStyle.css">-->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="easySelect.js"></script>
+
+</head>
+<body>
+<div class="navbar-nav">
+    <header>
+        <div th:insert="/navbar :: navbar"></div>
+    </header>
+</div>
+
+<script>
+    $("#demo").easySelect({
+        buttons: true, //
+        search: true,
+        placeholder: 'Choose Users',
+        placeholderColor: '#524781',
+        selectColor: '#524781',
+        itemTitle: 'Users Selected',
+        showEachItem: true,
+        width: '80%',
+        dropdownMaxHeight: '450px',
+    })
+</script>
+
+
+<script type="text/javascript">
+
+
+    $(document).ready(function () {
+
+        var last_valid_selection = null;
+
+        $('#multiselect').change(function (event) {
+
+            if ($(this).val().length > 6) {
+
+                $(this).val(last_valid_selection);
+                $(this).removeAttr("selected");
+                alert('You can select upto 6 Users only');
+            } else {
+                last_valid_selection = $(this).val();
+                // var x = document.getElementById("multiselect").selectedIndex;
+                // var text = document.getElementsByTagName("option")[x].text;//its a text
+                document.getElementById("SELECTED_USER").innerHTML = last_valid_selection;
+
+            }
+        });
+    });
+</script>
+<script type="text/javascript">
+    // function myfun() {
+    //     var x = document.getElementById('multiselect').selectedIndex;
+    //     var text = document.getElementsByTagName("option")[x].text;//its a text
+    //     document.getElementById("SELECTED_USER").innerHTML = text;
+    // }
+    // myfun();
+
+</script>
+<form action="#" th:action="@{/registergroup}" th:object="${group}" method="post" class="form-group">
+    <div class="container">
+        <div class="row">
+            <div name="leftmenu" class="left col-md-2 col-xs-2">
+                <div class="card card-left">
+                    <div class="card-body">
+                        <h4 class="card-title">Manage Data</h4>
+                        <a href="#" class="btn btn-primary card-button">Users</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="/register" class="card-link"
+                                                     style="color:#37404e !important;">Create</a></li>
+                            <li class="card-list"><a href="/showusers" class="card-link"
+                                                     style="color:#37404e !important;">List</a></li>
+                        </ul>
+
+                        <a href="#" class="btn btn-primary card-button">Papers</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="/registerpaper" class="card-link">Create</a></li>
+                            <li class="card-list"><a href="/showpapers" class="card-link">List</a></li>
+                        </ul>
+
+                        <a href="#" class="btn btn-primary card-button">Conferences</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="registerconference" class="card-link">Create</a>
+                            </li>
+                            <li class="card-list"><a href="showconference" class="card-link">List</a></li>
+                        </ul>
+                        <a href="#" class="btn btn-primary card-button">Group</a>
+                        <ul class="list-nobullets">
+                            <li class="card-list"><a href="registergroup" class="card-link">Create</a>
+                            </li>
+                            <li class="card-list"><a href="showgroups" class="card-link">List</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+
+            <div name="creategroup" class="right col-md-10">
+                <div class="row">
+                    <div name="topic " class="col-md-3">
+                        <div><label class="btn btn-primary card-button"> Topics </label></div>
+                        <div>
+                            <select class="form-control form-select-button" multiple="multiple" required>
+                                <option itemscope="itemscope" th:each="paper : ${listTopic}"
+                                        th:value="${paper.topicID}"
+                                        th:text="${paper.topicName}"></option>
+                            </select></td>
+                        </div>
+                    </div>
+                    <div name="topic " class="col-md-3">
+                        <div><label class="btn btn-primary card-button"> Paper </label></div>
+                        <div>
+                            <select class="form-control form-select-button" multiple="multiple" required>
+                                <option itemscope="itemscope" th:each="paper : ${listPaper}"
+                                        th:value="${paper.paperID}"
+                                        th:text="${paper.paperTitle}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div name="members" class="col">
+                        <div><label class="btn btn-primary card-button"> Members </label></div>
+                        <div>
+                            <select th:field="*{member}" class="form-control form-select-button" id="multiselect"
+                                    multiple="multiple"
+                                    data-max="6" name="activity[]" onchange="myfun()" required>
+                                <option value=""> User</option>
+                                <option itemscope="itemscope" th:each="user :${listUser}"
+                                        th:value="${user.uID}"
+                                        th:text="${user.uName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <label class="form-control" id="SELECTED_USER"> USER SELECTED</label>
+
+                </div>
+            </div>
+        </div>
+        <br/>
+        <div class="row">
+            <div class="col-md-6">
+                <input type="text" th:field="*{groupName}"
+                       name="username" placeholder="Group NAME"
+                       required class="form-control"/>
+            </div>
+            <div class="col-md-6">
+                <input type="submit" value="Register Group" class="btn btn-block btn-success" size="10"/>
+            </div>
+        </div>
+    </div>
+
+</form>
+
+
+</body>
+</html>
