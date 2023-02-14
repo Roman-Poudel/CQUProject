@@ -1,6 +1,7 @@
 package com.ocms.entity;
 
 import com.sun.istack.NotNull;
+
 import javax.persistence.*;
 
 @Entity

@@ -1,15 +1,15 @@
 package com.ocms.controller;
 
-import com.ocms.entity.*;
+import com.ocms.entity.Paper;
+import com.ocms.entity.PaperStatus;
+import com.ocms.entity.Publisher;
+import com.ocms.entity.Topic;
 import com.ocms.service.*;
-import com.sun.xml.internal.ws.policy.privateutil.PolicyUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.time.ZonedDateTime;

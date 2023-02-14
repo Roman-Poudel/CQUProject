@@ -4,7 +4,6 @@ import com.sun.istack.NotNull;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Locale;
 
 @Entity
 @Table(name = "tbl_user")
